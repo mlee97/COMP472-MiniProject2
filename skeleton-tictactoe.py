@@ -2,6 +2,25 @@
 
 import time
 
+# Row/Column size
+n = 0
+# Size of blocks
+b = 0
+# Positions of the blocks 
+b_positions = []
+# The winning line-up size
+s = 0
+# Maximum depth of the adversarial search for player 1 and for player 2
+d1 = 0
+d2 = 0
+# Maximum allowed time (in seconds) for your program to return a move
+t = 0 
+# Boolean to force the use of either minimax (FALSE) or alphabeta (TRUE)
+a = False
+# Play modes
+p1 = ""
+p2 = ""
+
 class Game:
 	MINIMAX = 0
 	ALPHABETA = 1
@@ -11,24 +30,100 @@ class Game:
 	def __init__(self, recommend = True):
 		self.initialize_game()
 		self.recommend = recommend
+
+	def initialize_params(self):
+		global n, b, b_positions, s, d1, d2, t, a, p1, p2
+		
+		n = 5 #int(input('enter the row/column size of the board: '))
+		b = 3 #int(input('enter the number of blocks: '))
+		b_positions = [[1,1], [2,1], [3,2]]
+		#for i in range(b):
+		#	x_position = int(input(F'enter the positions of the x-coordinate of block {i+1}: '))
+		#	y_position = int(input(F'enter the positions of the y-coordinate of block {i+1}: '))
+		#	b_positions.append([x_position, y_position])
+
+		s = 3 #int(input('enter the winning line-up size: '))
+		d1 = 2 #int(input('enter the maximum depth of the adversarial search for player 1: '))
+		d2 = 2 #int(input('enter the maximum depth of the adversarial search for player 2: '))
+		t = 2 #int(input('enter the maximum allowed time (in seconds) for your program to return a move: '))
+		a = False #bool(input('enter boolean to force the use of either minimax (FALSE) or alphabeta (TRUE): '))
+		p1 = "Human" #(input('enter the play mode of Player 1 (Human or AI): '))
+		p2 = "AI" #(input('enter the play mode of Player 2 (Human or AI): '))
+
+
+
 		
 	def initialize_game(self):
-		self.current_state = [['.','.','.'],
-							  ['.','.','.'],
-							  ['.','.','.']]
+
+		global n, b, b_positions, s, d1, d2, t, a, p_modes
+
+		# Ask user to specify all input parameters
+		self.initialize_params()
+
+		# Open Text File for the Game Trace
+		open(F'gameTrace-{n}{b}{s}{t}.txt', 'w').close()
+		game_trace_file = open(F'gameTrace-{n}{b}{s}{t}.txt', 'a')
+		
+		# Output the parameters
+		game_trace_file.write(F'n={n} b={b} s={s} t={t} \n')
+
+		# Output the position of the blocks
+		game_trace_file.write(F'blocs={b_positions} \n\n')
+
+		# Output player information
+
+		game_trace_file.write(F"Player 1: {p1} d={d1} a={a} e1(regular) \n")
+		game_trace_file.write(F"Player 2: {p1} d={d2} a={a} e1(defensive) \n\n")
+		game_trace_file.close()
+
+		# Specify the rows and columns
+		rows, columns = (n, n)
+		# Initialize nxn board with periods
+		self.current_state = [['.']*columns for _ in range(rows)]
+
+		# Set blocks on board
+		for i in range(len(b_positions)):
+			x = b_positions[i][0]
+			y = b_positions[i][1] 
+		
+			self.current_state[x][y] = "*"
+
 		# Player X always plays first
 		self.player_turn = 'X'
 
 	def draw_board(self):
+		global n
+		game_trace_file = open(F'gameTrace-{n}{b}{s}{t}.txt', 'a')
+
+		# Output Letters for Columns
+		ch = 'A'
+		game_trace_file.write("\n  ")
+		for i in range (0, n):
+			game_trace_file.write(ch)
+			ch = chr(ord(ch) + 1)
+
+		# Output Line
+		str = "\n +"
+		for i in range(0, n):
+			str += "-"
+		
+		game_trace_file.write(str)
+
+		# Output Game Board
 		print()
-		for y in range(0, 3):
-			for x in range(0, 3):
-				print(F'{self.current_state[x][y]}', end="")
-			print()
+		for y in range(0, n):
+			for row in range (0, n):
+				game_trace_file.write(F"\n{row}|")
+				for x in range(0, n):
+					game_trace_file.write(F'{self.current_state[x][y]}')
+				print()
 		print()
+
+		
 		
 	def is_valid(self, px, py):
-		if px < 0 or px > 2 or py < 0 or py > 2:
+		global n
+		if px < 0 or px >= n or py < 0 or py >= n:
 			return False
 		elif self.current_state[px][py] != '.':
 			return False
@@ -36,8 +131,9 @@ class Game:
 			return True
 
 	def is_end(self):
+		global n
 		# Vertical win
-		for i in range(0, 3):
+		for i in range(0, n):
 			if (self.current_state[0][i] != '.' and
 				self.current_state[0][i] == self.current_state[1][i] and
 				self.current_state[1][i] == self.current_state[2][i]):
@@ -77,16 +173,16 @@ class Game:
 				print('The winner is O!')
 			elif self.result == '.':
 				print("It's a tie!")
-			self.initialize_game()
+			#self.initialize_game()
 		return self.result
 
 	def input_move(self):
 		while True:
 			print(F'Player {self.player_turn}, enter your move:')
-			px = int(input('enter the x coordinate: '))
-			py = int(input('enter the y coordinate: '))
-			if self.is_valid(px, py):
-				return (px,py)
+			p_column = int(input('enter the column [A, B, ..., N]: '))
+			p_row = int(input('enter the row [0, 1, ... n-1]: '))
+			if self.is_valid(p_column, p_row):
+				return (p_column, p_row)
 			else:
 				print('The move is not valid! Try again.')
 
