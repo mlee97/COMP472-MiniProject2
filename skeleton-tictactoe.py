@@ -36,7 +36,7 @@ class Game:
 		
 		n = 5 #int(input('enter the row/column size of the board: '))
 		b = 3 #int(input('enter the number of blocks: '))
-		b_positions = [[0,0], [2,2], [3,3]]
+		b_positions = [[0,0], [2,1], [3,3]]
 		#for i in range(b):
 		#	x_position = int(input(F'enter the positions of the x-coordinate of block {i+1}: '))
 		#	y_position = int(input(F'enter the positions of the y-coordinate of block {i+1}: '))
@@ -208,7 +208,24 @@ class Game:
 						count = 1
 					# If the counter is equal to s, found a horizontal s
 					if(count == s):
-						return self.current_state[x][y]
+						return fdiag[x][y]
+			if(len(bdiag[x]) >= s):
+				for y in range(0, len(bdiag[x])):
+					# If coordinate is empty or has block, do nothing
+					if(bdiag[x][y] == "." or bdiag[x][y] == "*"):
+						count = 0
+					# Start counter at 1 everytime we return to start of a row
+					elif (y==0):
+						count = 1
+					# If the state of the current index is the same as the previous one, increment counter 
+					elif (bdiag[x][y] == bdiag[x][y-1]):
+						count = count + 1
+					# If the state of the current index is different as the previous one, return to 1
+					else:
+						count = 1
+					# If the counter is equal to s, found a horizontal s
+					if(count == s):
+						return bdiag[x][y]
 
 		# Is whole board full?
 		for i in range(0, n):
@@ -316,7 +333,11 @@ class Game:
 			else:
 				adversary_count = adversary_count + 1
 
-		return count-adversary_count
+		if(self.player_turn == 'X'):
+			return 7-count+adversary_count
+		else:
+			return -7+count+adversary_count
+		
 	
 	"""
 	Heuristic #2. Sophisticated, but slow to compute.
@@ -373,9 +394,9 @@ class Game:
 		for i in range (1, s):
 
 			#Find Bounds
-			lhs= y-i >= 0
+			lhs = y-i >= 0
 			rhs = y+i < n
-			upper_bound = x-i >=0
+			upper_bound = x-i >= 0
 			lower_bound = x+i < n
 
 			# Check horizontal directions
@@ -400,9 +421,9 @@ class Game:
 			#Automatic win detected
 			if(horizontal_consecutive_piece_count >= s):
 					if(self.player_turn=='O'):
-						return 1000000
+						return 1
 					else:
-						return -1000000
+						return -1
 					
 			# Check vertical directions
 			if(continue_up and upper_bound):
@@ -426,9 +447,9 @@ class Game:
 			#Automatic win detected
 			if(vertical_consecutive_piece_count >= s):
 				if(self.player_turn=='O'):
-					return 1000000
+					return 1
 				else:
-					return -1000000
+					return -1
 				
 			# Check diagonal directions
 			if(continue_top_left_diag and lhs and upper_bound):
@@ -470,16 +491,16 @@ class Game:
 			#Automatic win detected
 			if(fdiag_consecutive_piece_count >= s):
 				if(self.player_turn=='O'):
-					return 1000000
+					return 1
 				else:
-					return -1000000
+					return -1
 
 			#Automatic win detected
 			if(bdiag_consecutive_piece_count >= s):
 				if(self.player_turn=='O'):
-					return 1000000
+					return 1
 				else:
-					return -1000000
+					return -1
 		 
 		# Defensive strategy: Count the # of opponent pieces in range of s that contains 2 or more of their pieces. This prevents the other from winning.
 		# Formula: 2*s  * (number of consec opponent pieces - 1)
@@ -558,13 +579,22 @@ class Game:
 				else:
 					continue_bottom_right_diag == False
 				
-		value = horizontal_consecutive_piece_count + vertical_consecutive_piece_count + fdiag_consecutive_piece_count + bdiag_consecutive_piece_count
-		ad_value = ad_horizontal_consecutive_piece_count + ad_vertical_consecutive_piece_count + ad_fdiag_consecutive_piece_count + ad_bdiag_consecutive_piece_count
-		heuristic_value = value + blank_tile_count +(2*s  * (ad_value - 1))
-		if(self.player_turn == 'X'):
-			return -heuristic_value
+		if(horizontal_consecutive_piece_count >= s or 
+		vertical_consecutive_piece_count >= s or 
+		fdiag_consecutive_piece_count >= s or 
+		bdiag_consecutive_piece_count >= s):
+			if(self.player_turn == 'X'):
+				return -1
+			else:
+				return 1
 		else:
-			return heuristic_value
+			value = horizontal_consecutive_piece_count + vertical_consecutive_piece_count + fdiag_consecutive_piece_count + bdiag_consecutive_piece_count
+			ad_value = ad_horizontal_consecutive_piece_count + ad_vertical_consecutive_piece_count + ad_fdiag_consecutive_piece_count + ad_bdiag_consecutive_piece_count
+			heuristic_value = 6*(4*(2*s-1))-(3*value) - (blank_tile_count) - (2*s  * (ad_value - 1))
+			if(self.player_turn == 'X'):
+				return heuristic_value
+			else:
+				return -heuristic_value
 
 	def minimax(self, max=False, e1=True):
 		# Minimizing for 'X' and maximizing for 'O'
@@ -576,9 +606,13 @@ class Game:
 		global n
 
 		if e1:
-			value = 8
+			value = 8 # Worst value for X, -1 is win for X
 			if max:
-				value = -8
+				value = -8 # Worst value for O, 1 is win for O
+		else:
+			value = 6*(4*(2*s-1))
+			if max:
+				value = -6*(4*(2*s-1))
 		x = None
 		y = None
 		result = self.is_end()
@@ -593,14 +627,20 @@ class Game:
 				if self.current_state[i][j] == '.':
 					if max:
 						self.current_state[i][j] = 'O'
-						v = self.e3(i, j)
+						if(e1 == True):
+							v = self.e1(i, j)
+						else:
+							v = self.e3(i, j)
 						if v > value:
 							value = v
 							x = i
 							y = j
 					else:
 						self.current_state[i][j] = 'X'
-						v = self.e3(i, j)
+						if(e1 == True):
+							v = self.e1(i, j)
+						else:
+							v = self.e3(i, j)
 						if v < value:
 							value = v
 							x = i
@@ -622,6 +662,12 @@ class Game:
 			value = 8
 			if max:
 				value = -8
+		else:
+			alpha = -6*(4*(2*s-1))
+			beta = 6*(4*(2*s-1))
+			value = 6*(4*(2*s-1))
+			if max:
+				value = -6*(4*(2*s-1))
 
 		x = None
 		y = None
@@ -636,21 +682,28 @@ class Game:
 
 		for i in range(0, n):
 			for j in range(0, n):
-				self.e1(i, j)
 				if self.current_state[i][j] == '.':
 					if max:
 						self.current_state[i][j] = 'O'
 						#(v, _, _) = self.alphabeta(alpha, beta, max=False)
-						v = self.e3(i,j)
+						if(e1 == True):
+							v = self.e1(i, j)
+						else:
+							v = self.e3(i, j)
 						if v > value:
+							# v > -8
 							value = v
 							x = i
 							y = j
 					else:
 						self.current_state[i][j] = 'X'
 						#(v, _, _) = self.alphabeta(alpha, beta, max=True)
-						v = self.e3(i,j)
+						if(e1 == True):
+							v = self.e1(i, j)
+						else:
+							v = self.e3(i, j)
 						if v < value:
+							# v < 8
 							value = v
 							x = i
 							y = j
@@ -707,7 +760,7 @@ class Game:
 
 def main():
 	g = Game(recommend=True)
-	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.AI)
+	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	#g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
 
 if __name__ == "__main__":
