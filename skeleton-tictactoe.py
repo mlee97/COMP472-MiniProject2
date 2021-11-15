@@ -188,9 +188,6 @@ class Game:
 			for y in range(n):
 				fdiag[x+y].append(self.current_state[y][x])
 				bdiag[x-y-min_bdiag].append(self.current_state[y][x])
-		
-		print(fdiag)
-		print(bdiag)
 
 		for x in range(0, len(fdiag)):
 			count = 0
@@ -358,40 +355,49 @@ class Game:
 
 	def e3(self, x, y):
 		global n, s
-		blank_tile_count, adversary_consecutive_piece_count = 0
-		vertical_consecutive_piece_count, horizontal_consecutive_piece_count, fdiag_consecutive_piece_count, bdiag_consecutive_piece_count = 1
-		lhs_out_of_bound = y-s+1 < 0
-		rhs_out_of_bound = y+s-1 >= n
+		blank_tile_count = 0
+		vertical_consecutive_piece_count, horizontal_consecutive_piece_count, fdiag_consecutive_piece_count, bdiag_consecutive_piece_count = 1,1,1,1
+		ad_vertical_consecutive_piece_count, ad_horizontal_consecutive_piece_count, ad_fdiag_consecutive_piece_count, ad_bdiag_consecutive_piece_count = 0,0,0,0
 		continue_left = True
 		continue_right = True
 		continue_up = True
 		continue_down = True
-	 	continue_top_left_diag = True
-	 	continue_top_right_diag = True
-	 	continue_bottom_left_diag = True
-	 	continue_bottom_right_diag = True
+		continue_top_left_diag = True
+		continue_top_right_diag = True
+		continue_bottom_left_diag = True
+		continue_bottom_right_diag = True
 
 		# Count the the # of consecutive X or O in a row, column and diagonal (including blank tiles), where the search span = s
 		
-		# First, check the rows:
+		# First, check the consective pieces of the current player:
 		for i in range (1, s):
+
+			#Find Bounds
+			lhs= y-i >= 0
+			rhs = y+i < n
+			upper_bound = x-i >=0
+			lower_bound = x+i < n
+
 			# Check horizontal directions
-			if(continue_left):
+			if(continue_left and lhs):
 				if(self.current_state[x][y-i]==self.player_turn):
 					horizontal_consecutive_piece_count = horizontal_consecutive_piece_count + 1
 				elif(self.current_state[x][y-i]=='.'):
 					blank_tile_count = blank_tile_count + 1
+				# If blocked, stop search in this direction
 				else:
 					continue_left == False
 					
-			if(continue_right):
+			if(continue_right and rhs):
 				if(self.current_state[x][y+i]==self.player_turn):
 					horizontal_consecutive_piece_count = horizontal_consecutive_piece_count + 1
 				elif(self.current_state[x][y+i]=='.'):
 					blank_tile_count = blank_tile_count + 1
+				# If blocked, stop search in this direction
 				else:
 					continue_right == False
 			
+			#Automatic win detected
 			if(horizontal_consecutive_piece_count >= s):
 					if(self.player_turn=='O'):
 						return 1000000
@@ -399,22 +405,25 @@ class Game:
 						return -1000000
 					
 			# Check vertical directions
-			if(continue_up):
+			if(continue_up and upper_bound):
 				if(self.current_state[x-i][y]==self.player_turn):
 					vertical_consecutive_piece_count = vertical_consecutive_piece_count + 1
 				elif(self.current_state[x-i][y]=='.'):
 					blank_tile_count = blank_tile_count + 1
+				# If blocked, stop search in this direction
 				else:
 					continue_up == False
 					
-			if(continue_down):
+			if(continue_down and lower_bound):
 				if(self.current_state[x+i][y]==self.player_turn):
 					vertical_consecutive_piece_count = vertical_consecutive_piece_count + 1
 				elif(self.current_state[x+i][y]=='.'):
 					blank_tile_count = blank_tile_count + 1
+				# If blocked, stop search in this direction
 				else:
 					continue_down == False
 			
+			#Automatic win detected
 			if(vertical_consecutive_piece_count >= s):
 				if(self.player_turn=='O'):
 					return 1000000
@@ -422,44 +431,50 @@ class Game:
 					return -1000000
 				
 			# Check diagonal directions
-			if(continue_top_left_diag):
+			if(continue_top_left_diag and lhs and upper_bound):
 				if(self.current_state[x-i][y-i]==self.player_turn):
 					fdiag_consecutive_piece_count = fdiag_consecutive_piece_count + 1
 				elif(self.current_state[x-i][y-i]=='.'):
 					blank_tile_count = blank_tile_count + 1
+				# If blocked, stop search in this direction
 				else:
 					continue_top_left_diag == False
 			
-			if(continue_top_right_diag):
+			if(continue_top_right_diag and rhs and upper_bound):
 				if(self.current_state[x-i][y+i]==self.player_turn):
 					bdiag_consecutive_piece_count = bdiag_consecutive_piece_count + 1
 				elif(self.current_state[x-i][y+i]=='.'):
 					blank_tile_count = blank_tile_count + 1
+				# If blocked, stop search in this direction
 				else:
 					continue_top_right_diag == False
 			
-			if(continue_bottom_left_diag):
+			if(continue_bottom_left_diag and lhs and lower_bound):
 				if(self.current_state[x+i][y-i]==self.player_turn):
 					bdiag_consecutive_piece_count = bdiag_consecutive_piece_count + 1
 				elif(self.current_state[x+i][y-i]=='.'):
 					blank_tile_count = blank_tile_count + 1
+				# If blocked, stop search in this direction
 				else:
 					continue_bottom_left_diag == False
 			
-			if(continue_bottom_right_diag):
+			if(continue_bottom_right_diag and rhs and lower_bound):
 				if(self.current_state[x+i][y+i]==self.player_turn):
 					fdiag_consecutive_piece_count = fdiag_consecutive_piece_count + 1
 				elif(self.current_state[x+i][y+i]=='.'):
 					blank_tile_count = blank_tile_count + 1
+				# If blocked, stop search in this direction
 				else:
 					continue_bottom_right_diag == False
 			
+			#Automatic win detected
 			if(fdiag_consecutive_piece_count >= s):
 				if(self.player_turn=='O'):
 					return 1000000
 				else:
 					return -1000000
 
+			#Automatic win detected
 			if(bdiag_consecutive_piece_count >= s):
 				if(self.player_turn=='O'):
 					return 1000000
@@ -472,16 +487,84 @@ class Game:
 			opponent = 'O'
 		else:
 			opponent = 'X'
-			
-		for i in range (0, s):
-			# Ignore all cases that are out of bounds
-			if (lhs_out_of_bound or rhs_out_of_bound):
-				pass # Do nothing
-			
-			# Check the rows
-			if (self.current_state[x][y+i] == '.'):
-				
 
+		# Reset all continue boolean variables
+		continue_left = True
+		continue_right = True
+		continue_up = True
+		continue_down = True
+		continue_top_left_diag = True
+		continue_top_right_diag = True
+		continue_bottom_left_diag = True
+		continue_bottom_right_diag = True
+			
+		for i in range (1, s):
+			# Check horizontal directions
+			if(continue_left and lhs):
+				if(self.current_state[x][y-i]!=self.player_turn):
+					ad_horizontal_consecutive_piece_count = ad_horizontal_consecutive_piece_count + 1
+				# If blocked, stop search in this direction
+				else:
+					continue_left == False
+					
+			if(continue_right and rhs):
+				if(self.current_state[x][y+i]!=self.player_turn):
+					ad_horizontal_consecutive_piece_count = ad_horizontal_consecutive_piece_count + 1
+				# If blocked, stop search in this direction
+				else:
+					continue_right == False
+					
+			# Check vertical directions
+			if(continue_up and upper_bound):
+				if(self.current_state[x-i][y]!=self.player_turn):
+					ad_vertical_consecutive_piece_count = ad_vertical_consecutive_piece_count + 1
+				# If blocked, stop search in this direction
+				else:
+					continue_up == False
+					
+			if(continue_down and lower_bound):
+				if(self.current_state[x+i][y]!=self.player_turn):
+					ad_vertical_consecutive_piece_count = ad_vertical_consecutive_piece_count + 1
+				# If blocked, stop search in this direction
+				else:
+					continue_down == False
+				
+			# Check diagonal directions
+			if(continue_top_left_diag and lhs and upper_bound):
+				if(self.current_state[x-i][y-i]!=self.player_turn):
+					ad_fdiag_consecutive_piece_count = ad_fdiag_consecutive_piece_count + 1
+				# If blocked, stop search in this direction
+				else:
+					continue_top_left_diag == False
+			
+			if(continue_top_right_diag and rhs and upper_bound):
+				if(self.current_state[x-i][y+i]!=self.player_turn):
+					ad_bdiag_consecutive_piece_count = ad_bdiag_consecutive_piece_count + 1
+				# If blocked, stop search in this direction
+				else:
+					continue_top_right_diag == False
+			
+			if(continue_bottom_left_diag and lhs and lower_bound):
+				if(self.current_state[x+i][y-i]!=self.player_turn):
+					ad_bdiag_consecutive_piece_count = ad_bdiag_consecutive_piece_count + 1
+				# If blocked, stop search in this direction
+				else:
+					continue_bottom_left_diag == False
+			
+			if(continue_bottom_right_diag and rhs and lower_bound):
+				if(self.current_state[x+i][y+i]!=self.player_turn):
+					ad_fdiag_consecutive_piece_count = ad_fdiag_consecutive_piece_count + 1
+				# If blocked, stop search in this direction
+				else:
+					continue_bottom_right_diag == False
+				
+		value = horizontal_consecutive_piece_count + vertical_consecutive_piece_count + fdiag_consecutive_piece_count + bdiag_consecutive_piece_count
+		ad_value = ad_horizontal_consecutive_piece_count + ad_vertical_consecutive_piece_count + ad_fdiag_consecutive_piece_count + ad_bdiag_consecutive_piece_count
+		heuristic_value = value + blank_tile_count +(2*s  * (ad_value - 1))
+		if(self.player_turn == 'X'):
+			return -heuristic_value
+		else:
+			return heuristic_value
 
 	def minimax(self, max=False, e1=True):
 		# Minimizing for 'X' and maximizing for 'O'
@@ -510,14 +593,14 @@ class Game:
 				if self.current_state[i][j] == '.':
 					if max:
 						self.current_state[i][j] = 'O'
-						v = self.e1(i, j)
+						v = self.e3(i, j)
 						if v > value:
 							value = v
 							x = i
 							y = j
 					else:
 						self.current_state[i][j] = 'X'
-						v = self.e1(i, j)
+						v = self.e3(i, j)
 						if v < value:
 							value = v
 							x = i
@@ -558,7 +641,7 @@ class Game:
 					if max:
 						self.current_state[i][j] = 'O'
 						#(v, _, _) = self.alphabeta(alpha, beta, max=False)
-						v = self.e1(i,j)
+						v = self.e3(i,j)
 						if v > value:
 							value = v
 							x = i
@@ -566,7 +649,7 @@ class Game:
 					else:
 						self.current_state[i][j] = 'X'
 						#(v, _, _) = self.alphabeta(alpha, beta, max=True)
-						v = self.e1(i,j)
+						v = self.e3(i,j)
 						if v < value:
 							value = v
 							x = i
@@ -624,8 +707,8 @@ class Game:
 
 def main():
 	g = Game(recommend=True)
-	#g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
-	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
+	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.AI)
+	#g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
 
 if __name__ == "__main__":
 	main()
