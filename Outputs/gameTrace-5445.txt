@@ -1,0 +1,116 @@
+n=5 b=4 s=4 t=5 
+blocs=[[1, 1], [1, 2], [3, 2], [3, 4]] 
+
+Player 1: AI d=6 a=True e1(regular) 
+Player 2: AI d=6 a=True e1(defensive) 
+
+
+  ABCDE
+ +-----
+0|.....
+1|.**..
+2|.....
+3|..*.*
+4|.....
+Evaluation time: 0.001003s
+Player X under AI control plays: x = 1, y = 3
+
+  ABCDE
+ +-----
+0|.....
+1|.**X.
+2|.....
+3|..*.*
+4|.....
+Evaluation time: 0.0009999s
+Player O under AI control plays: x = 2, y = 1
+
+  ABCDE
+ +-----
+0|.....
+1|.**X.
+2|.O...
+3|..*.*
+4|.....
+Evaluation time: 0.0s
+Player X under AI control plays: x = 3, y = 3
+
+  ABCDE
+ +-----
+0|.....
+1|.**X.
+2|.O...
+3|..*X*
+4|.....
+Evaluation time: 0.0s
+Player O under AI control plays: x = 2, y = 2
+
+  ABCDE
+ +-----
+0|.....
+1|.**X.
+2|.OO..
+3|..*X*
+4|.....
+Evaluation time: 0.0s
+Player X under AI control plays: x = 1, y = 0
+
+  ABCDE
+ +-----
+0|.....
+1|X**X.
+2|.OO..
+3|..*X*
+4|.....
+Evaluation time: 0.0s
+Player O under AI control plays: x = 2, y = 3
+
+  ABCDE
+ +-----
+0|.....
+1|X**X.
+2|.OOO.
+3|..*X*
+4|.....
+Evaluation time: 0.0s
+Player X under AI control plays: x = 3, y = 0
+
+  ABCDE
+ +-----
+0|.....
+1|X**X.
+2|.OOO.
+3|X.*X*
+4|.....
+Evaluation time: 0.0s
+Player O under AI control plays: x = 3, y = 1
+
+  ABCDE
+ +-----
+0|.....
+1|X**X.
+2|.OOO.
+3|XO*X*
+4|.....
+Evaluation time: 0.0s
+Player X under AI control plays: x = 0, y = 1
+
+  ABCDE
+ +-----
+0|.X...
+1|X**X.
+2|.OOO.
+3|XO*X*
+4|.....
+Evaluation time: 0.0s
+Player O under AI control plays: x = 2, y = 0
+
+  ABCDE
+ +-----
+0|.X...
+1|X**X.
+2|OOOO.
+3|XO*X*
+4|.....
+
+The winner is O!

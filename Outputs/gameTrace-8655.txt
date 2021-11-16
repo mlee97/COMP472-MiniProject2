@@ -1,0 +1,227 @@
+n=8 b=6 s=5 t=5 
+blocs=[[3, 1], [2, 6], [3, 5], [3, 4], [7, 2], [6, 5]] 
+
+Player 1: AI d=6 a=True e1(regular) 
+Player 2: AI d=6 a=True e1(defensive) 
+
+
+  ABCDEFGH
+ +--------
+0|........
+1|........
+2|......*.
+3|.*..**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0s
+Player X under AI control plays: x = 1, y = 1
+
+  ABCDEFGH
+ +--------
+0|........
+1|.X......
+2|......*.
+3|.*..**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0010018s
+Player O under AI control plays: x = 1, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XO.....
+2|......*.
+3|.*..**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0010002s
+Player X under AI control plays: x = 1, y = 3
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOX....
+2|......*.
+3|.*..**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.000998s
+Player O under AI control plays: x = 1, y = 4
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXO...
+2|......*.
+3|.*..**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0019989s
+Player X under AI control plays: x = 1, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOX..
+2|......*.
+3|.*..**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0009999s
+Player O under AI control plays: x = 1, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|......*.
+3|.*..**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0s
+Player X under AI control plays: x = 3, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|......*.
+3|.*X.**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.000999s
+Player O under AI control plays: x = 2, y = 1
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O....*.
+3|.*X.**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0050058s
+Player X under AI control plays: x = 3, y = 3
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O....*.
+3|.*XX**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0010011s
+Player O under AI control plays: x = 2, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.OO...*.
+3|.*XX**..
+4|........
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.003999s
+Player X under AI control plays: x = 4, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.OO...*.
+3|.*XX**..
+4|......X.
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0010009s
+Player O under AI control plays: x = 2, y = 3
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.OOO..*.
+3|.*XX**..
+4|......X.
+5|........
+6|.....*..
+7|..*.....
+Evaluation time: 0.0029981s
+Player X under AI control plays: x = 5, y = 1
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.OOO..*.
+3|.*XX**..
+4|......X.
+5|.X......
+6|.....*..
+7|..*.....
+Evaluation time: 0.0009999s
+Player O under AI control plays: x = 2, y = 4
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.OOOO.*.
+3|.*XX**..
+4|......X.
+5|.X......
+6|.....*..
+7|..*.....
+Evaluation time: 0.0010002s
+Player X under AI control plays: x = 5, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.OOOO.*.
+3|.*XX**..
+4|......X.
+5|.XX.....
+6|.....*..
+7|..*.....
+Evaluation time: 0.0s
+Player O under AI control plays: x = 2, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.OOOOO*.
+3|.*XX**..
+4|......X.
+5|.XX.....
+6|.....*..
+7|..*.....
+
+The winner is O!
