@@ -34,21 +34,21 @@ class Game:
 	def initialize_params(self):
 		global n, b, b_positions, s, d1, d2, t, a, p1, p2
 		
-		n = 5 #int(input('enter the row/column size of the board: '))
-		b = 3 #int(input('enter the number of blocks: '))
-		b_positions = [[0,0], [2,1], [3,3]]
-		#for i in range(b):
-		#	x_position = int(input(F'enter the positions of the x-coordinate of block {i+1}: '))
-		#	y_position = int(input(F'enter the positions of the y-coordinate of block {i+1}: '))
-		#	b_positions.append([x_position, y_position])
+		n = int(input('enter the row/column size of the board: '))
+		b = int(input('enter the number of blocks: '))
+		b_positions = []
+		for i in range(b):
+			x_position = int(input(F'enter the positions of the x-coordinate of block {i+1}: '))
+			y_position = int(input(F'enter the positions of the y-coordinate of block {i+1}: '))
+			b_positions.append([x_position, y_position])
 
-		s = 3 #int(input('enter the winning line-up size: '))
-		d1 = 2 #int(input('enter the maximum depth of the adversarial search for player 1: '))
-		d2 = 2 #int(input('enter the maximum depth of the adversarial search for player 2: '))
-		t = 2 #int(input('enter the maximum allowed time (in seconds) for your program to return a move: '))
-		a = False #bool(input('enter boolean to force the use of either minimax (FALSE) or alphabeta (TRUE): '))
-		p1 = "Human" #(input('enter the play mode of Player 1 (Human or AI): '))
-		p2 = "AI" #(input('enter the play mode of Player 2 (Human or AI): '))
+		s = int(input('enter the winning line-up size: '))
+		d1 = int(input('enter the maximum depth of the adversarial search for player 1: '))
+		d2 = int(input('enter the maximum depth of the adversarial search for player 2: '))
+		t = int(input('enter the maximum allowed time (in seconds) for your program to return a move: '))
+		a = bool(input('enter boolean to force the use of either minimax (FALSE) or alphabeta (TRUE): '))
+		p1 = (input('enter the play mode of Player 1 (Human or AI): '))
+		p2 = (input('enter the play mode of Player 2 (Human or AI): '))
 
 
 
@@ -349,32 +349,9 @@ class Game:
 	Parameters:
 	- x: x position on the board.
 	- y: y position on the board.
-	"""
+	"""			
+
 	def e2(self, x, y):
-		global n, s
-		consecutive_piece_count, blank_tile_count, adversary_consecutive_piece_count = 0
-		lhs_out_of_bound = y-s+1 < 0
-		rhs_out_of_bound = y+s-1 >= n
-
-		# Count the the # of consecutive X or O in a row, column and diagonal (including blank tiles), where the search span = s
-		
-		# First, check the rows:
-		for i in range (-s+1, s):
-			for j in range (0, s):
-				# Ignore all cases that are out of bounds
-				if (lhs_out_of_bound or rhs_out_of_bound):
-					pass # Do nothing
-				
-				elif(j==0):
-					if(self.current_state[x][y+i] == self.player_turn):
-						consecutive_piece_count = consecutive_piece_count + 1
-					
-				else:
-					print('hi')
-
-			
-
-	def e3(self, x, y):
 		global n, s
 		blank_tile_count = 0
 		vertical_consecutive_piece_count, horizontal_consecutive_piece_count, fdiag_consecutive_piece_count, bdiag_consecutive_piece_count = 1,1,1,1
@@ -691,7 +668,6 @@ class Game:
 						else:
 							v = self.e3(i, j)
 						if v > value:
-							# v > -8
 							value = v
 							x = i
 							y = j
@@ -703,7 +679,6 @@ class Game:
 						else:
 							v = self.e3(i, j)
 						if v < value:
-							# v < 8
 							value = v
 							x = i
 							y = j

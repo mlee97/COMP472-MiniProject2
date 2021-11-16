@@ -1,0 +1,682 @@
+n=8 b=5 s=5 t=1 
+blocs=[[2, 3], [2, 2], [4, 1], [5, 3], [6, 1]] 
+
+Player 1: AI d=2 a=True e1(regular) 
+Player 2: AI d=6 a=True e1(defensive) 
+
+
+  ABCDEFGH
+ +--------
+0|........
+1|........
+2|..**....
+3|........
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.003s
+Player X under AI control plays: x = 1, y = 1
+
+  ABCDEFGH
+ +--------
+0|........
+1|.X......
+2|..**....
+3|........
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.000998s
+Player O under AI control plays: x = 1, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XO.....
+2|..**....
+3|........
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0010021s
+Player X under AI control plays: x = 1, y = 3
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOX....
+2|..**....
+3|........
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0s
+Player O under AI control plays: x = 1, y = 4
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXO...
+2|..**....
+3|........
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0s
+Player X under AI control plays: x = 1, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOX..
+2|..**....
+3|........
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0009961s
+Player O under AI control plays: x = 1, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|..**....
+3|........
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0019999s
+Player X under AI control plays: x = 3, y = 1
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|..**....
+3|.X......
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.001997s
+Player O under AI control plays: x = 2, y = 1
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**....
+3|.X......
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0050008s
+Player X under AI control plays: x = 3, y = 4
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**....
+3|.X..X...
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0010009s
+Player O under AI control plays: x = 2, y = 4
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**O...
+3|.X..X...
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0069988s
+Player X under AI control plays: x = 3, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**O...
+3|.X..XX..
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0s
+Player O under AI control plays: x = 2, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OO..
+3|.X..XX..
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0029969s
+Player X under AI control plays: x = 3, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OO..
+3|.X..XXX.
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0019982s
+Player O under AI control plays: x = 2, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.X..XXX.
+4|.*......
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0019991s
+Player X under AI control plays: x = 4, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.X..XXX.
+4|.*X.....
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.001003s
+Player O under AI control plays: x = 3, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XO.XXX.
+4|.*X.....
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0s
+Player X under AI control plays: x = 4, y = 3
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XO.XXX.
+4|.*XX....
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0010011s
+Player O under AI control plays: x = 3, y = 3
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XX....
+5|...*....
+6|.*......
+7|........
+Evaluation time: 0.0049989s
+Player X under AI control plays: x = 5, y = 4
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XX....
+5|...*X...
+6|.*......
+7|........
+Evaluation time: 0.005002s
+Player O under AI control plays: x = 4, y = 4
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXO...
+5|...*X...
+6|.*......
+7|........
+Evaluation time: 0.0019982s
+Player X under AI control plays: x = 5, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXO...
+5|...*XX..
+6|.*......
+7|........
+Evaluation time: 0.0029991s
+Player O under AI control plays: x = 4, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXOO..
+5|...*XX..
+6|.*......
+7|........
+Evaluation time: 0.0s
+Player X under AI control plays: x = 5, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXOO..
+5|...*XXX.
+6|.*......
+7|........
+Evaluation time: 0.0039999s
+Player O under AI control plays: x = 4, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXOOO.
+5|...*XXX.
+6|.*......
+7|........
+Evaluation time: 0.002002s
+Player X under AI control plays: x = 6, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXOOO.
+5|...*XXX.
+6|.*X.....
+7|........
+Evaluation time: 0.0010002s
+Player O under AI control plays: x = 5, y = 1
+
+  ABCDEFGH
+ +--------
+0|........
+1|.XOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXOOO.
+5|.O.*XXX.
+6|.*X.....
+7|........
+Evaluation time: 0.0s
+Player X under AI control plays: x = 1, y = 0
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXOOO.
+5|.O.*XXX.
+6|.*X.....
+7|........
+Evaluation time: 0.0020001s
+Player O under AI control plays: x = 5, y = 2
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|.XOOXXX.
+4|.*XXOOO.
+5|.OO*XXX.
+6|.*X.....
+7|........
+Evaluation time: 0.007s
+Player X under AI control plays: x = 3, y = 0
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|.OO*XXX.
+6|.*X.....
+7|........
+Evaluation time: 0.0059988s
+Player O under AI control plays: x = 6, y = 3
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|.OO*XXX.
+6|.*XO....
+7|........
+Evaluation time: 0.0010009s
+Player X under AI control plays: x = 5, y = 0
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XO....
+7|........
+Evaluation time: 0.0019979s
+Player O under AI control plays: x = 6, y = 4
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XOO...
+7|........
+Evaluation time: 0.000999s
+Player X under AI control plays: x = 7, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XOO...
+7|.....X..
+Evaluation time: 0.0s
+Player O under AI control plays: x = 6, y = 5
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XOOO..
+7|.....X..
+Evaluation time: 0.0010002s
+Player X under AI control plays: x = 7, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XOOO..
+7|.....XX.
+Evaluation time: 0.0009959s
+Player O under AI control plays: x = 6, y = 6
+
+  ABCDEFGH
+ +--------
+0|........
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XOOOO.
+7|.....XX.
+Evaluation time: 0.0009971s
+Player X under AI control plays: x = 0, y = 1
+
+  ABCDEFGH
+ +--------
+0|.X......
+1|XXOXOXO.
+2|.O**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XOOOO.
+7|.....XX.
+Evaluation time: 0.001003s
+Player O under AI control plays: x = 2, y = 0
+
+  ABCDEFGH
+ +--------
+0|.X......
+1|XXOXOXO.
+2|OO**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XOOOO.
+7|.....XX.
+Evaluation time: 0.0s
+Player X under AI control plays: x = 0, y = 2
+
+  ABCDEFGH
+ +--------
+0|.XX.....
+1|XXOXOXO.
+2|OO**OOO.
+3|XXOOXXX.
+4|.*XXOOO.
+5|XOO*XXX.
+6|.*XOOOO.
+7|.....XX.
+Evaluation time: 0.0010021s
+Player O under AI control plays: x = 4, y = 0
+
+  ABCDEFGH
+ +--------
+0|.XX.....
+1|XXOXOXO.
+2|OO**OOO.
+3|XXOOXXX.
+4|O*XXOOO.
+5|XOO*XXX.
+6|.*XOOOO.
+7|.....XX.
+Evaluation time: 0.001003s
+Player X under AI control plays: x = 0, y = 3
+
+  ABCDEFGH
+ +--------
+0|.XXX....
+1|XXOXOXO.
+2|OO**OOO.
+3|XXOOXXX.
+4|O*XXOOO.
+5|XOO*XXX.
+6|.*XOOOO.
+7|.....XX.
+Evaluation time: 0.0s
+Player O under AI control plays: x = 6, y = 0
+
+  ABCDEFGH
+ +--------
+0|.XXX....
+1|XXOXOXO.
+2|OO**OOO.
+3|XXOOXXX.
+4|O*XXOOO.
+5|XOO*XXX.
+6|O*XOOOO.
+7|.....XX.
+Evaluation time: 0.0010002s
+Player X under AI control plays: x = 0, y = 4
+
+  ABCDEFGH
+ +--------
+0|.XXXX...
+1|XXOXOXO.
+2|OO**OOO.
+3|XXOOXXX.
+4|O*XXOOO.
+5|XOO*XXX.
+6|O*XOOOO.
+7|.....XX.
+Evaluation time: 0.0s
+Player O under AI control plays: x = 7, y = 1
+
+  ABCDEFGH
+ +--------
+0|.XXXX...
+1|XXOXOXO.
+2|OO**OOO.
+3|XXOOXXX.
+4|O*XXOOO.
+5|XOO*XXX.
+6|O*XOOOO.
+7|.O...XX.
+Evaluation time: 0.0s
+Player X under AI control plays: x = 1, y = 7
+
+  ABCDEFGH
+ +--------
+0|.XXXX...
+1|XXOXOXOX
+2|OO**OOO.
+3|XXOOXXX.
+4|O*XXOOO.
+5|XOO*XXX.
+6|O*XOOOO.
+7|.O...XX.
+Evaluation time: 0.0029981s
+Player O under AI control plays: x = 7, y = 2
+
+  ABCDEFGH
+ +--------
+0|.XXXX...
+1|XXOXOXOX
+2|OO**OOO.
+3|XXOOXXX.
+4|O*XXOOO.
+5|XOO*XXX.
+6|O*XOOOO.
+7|.OO..XX.
+Evaluation time: 0.000998s
+Player X under AI control plays: x = 3, y = 7
+
+  ABCDEFGH
+ +--------
+0|.XXXX...
+1|XXOXOXOX
+2|OO**OOO.
+3|XXOOXXXX
+4|O*XXOOO.
+5|XOO*XXX.
+6|O*XOOOO.
+7|.OO..XX.
+Evaluation time: 0.0010021s
+Player O under AI control plays: x = 7, y = 3
+
+  ABCDEFGH
+ +--------
+0|.XXXX...
+1|XXOXOXOX
+2|OO**OOO.
+3|XXOOXXXX
+4|O*XXOOO.
+5|XOO*XXX.
+6|O*XOOOO.
+7|.OOO.XX.
+Evaluation time: 0.0s
+Player X under AI control plays: x = 5, y = 7
+
+  ABCDEFGH
+ +--------
+0|.XXXX...
+1|XXOXOXOX
+2|OO**OOO.
+3|XXOOXXXX
+4|O*XXOOO.
+5|XOO*XXXX
+6|O*XOOOO.
+7|.OOO.XX.
+Evaluation time: 0.0s
+Player O under AI control plays: x = 7, y = 4
+
+  ABCDEFGH
+ +--------
+0|.XXXX...
+1|XXOXOXOX
+2|OO**OOO.
+3|XXOOXXXX
+4|O*XXOOO.
+5|XOO*XXXX
+6|O*XOOOO.
+7|.OOOOXX.
+Evaluation time: 0.003998s
+Player X under AI control plays: x = 0, y = 0
+
+  ABCDEFGH
+ +--------
+0|XXXXX...
+1|XXOXOXOX
+2|OO**OOO.
+3|XXOOXXXX
+4|O*XXOOO.
+5|XOO*XXXX
+6|O*XOOOO.
+7|.OOOOXX.
+
+The winner is X!
